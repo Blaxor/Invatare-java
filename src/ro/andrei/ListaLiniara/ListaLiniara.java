@@ -4,7 +4,7 @@ public class ListaLiniara<T> {
 
 	private final int maxAmount;
 	private int size = 0;
-	Node<T> head;
+	private Node<T> head;
 
 	/**
 	 * Constructorul pentru clasa ListaLiniara<T> care are maximul de elemente =
@@ -64,18 +64,18 @@ public class ListaLiniara<T> {
 			System.out.println("The value has not been added because is full");
 			return;
 		}
-		if (head == null) {
-			head = new Node<T>(value);
-			size++;
+		if (head == null) { // daca head este null
+			head = new Node<T>(value);// cream mai intai head ul
+			size++;// incrementam dimensiunea listei
 			return;
 		}
 		Node<T> node = head;
-		while (node.getNext() != null) {
+		while (node.getNext() != null) { // cat timp exista un urmator nod
 			node = node.getNext();
 
 		}
-		node.setNext(new Node<T>(value));
-		size++;
+		node.setNext(new Node<T>(value));// // setam la ultimul nod valoarea
+		size++;// incrementam dimensiunea listei
 	}
 
 	/**
@@ -195,14 +195,10 @@ public class ListaLiniara<T> {
 			return;
 		}
 		if(i==0) {
-			head = new Node<T>(value, head.getNext());
+			head.setValue(value);
 			return;
 		}
-		Node<T> prev , next,now;
-		prev = getNode(i - 1);
-		next = getNode(i + 1);
-		now = new Node<T>(value, next);
-		prev.setNext(now);
+		getNode(i).setValue(value);
 	}
 
 	/**

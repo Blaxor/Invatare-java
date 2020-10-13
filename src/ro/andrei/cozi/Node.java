@@ -1,4 +1,4 @@
-package ro.andrei.ListaLiniara;
+package ro.andrei.cozi;
 
 public class Node<T> {
 	private T value;

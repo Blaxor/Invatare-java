@@ -2,6 +2,12 @@ package ro.andrei.CautareBinara;
 
 public class CautareBinara {
 
+	public static void main(String[] args) {
+		int[] a = { 1, 3, 4, 4, 5, 10, 15, 20, 100, 250, 300, 599, 2000 };
+		System.out.println(cautareBinara(a, 100, 0, a.length));
+
+	}
+
 
 
 	public static int[] insertieBinara(int[] lista, int numar) {
@@ -40,6 +46,7 @@ public class CautareBinara {
 
 		}
 
+
 		return listaNoua;
 
 	}
@@ -47,25 +54,20 @@ public class CautareBinara {
 	/*
 	 * 4 [1,2,3,4,5,6,7,8,9] Return pozitia numarului cautat in lista;
 	 */
-	public static int cautareBinara(int[] lista, int numarCautat, int leftPos, int rightPos) throws Exception {
+	public static int cautareBinara(int[] lista, int numarCautat, int leftPos, int rightPos) {
 		int mij = (rightPos - leftPos) / 2;
-		int diferenta = numarCautat - lista[mij];
 
-		if (diferenta < 0)
-			diferenta *= -1;
 
-		if (lista[mij] < numarCautat && lista[mij + 1] > numarCautat) {
-			return mij;
-		} else if (lista[mij] < numarCautat) {
+		if (lista[mij] < numarCautat) {
 
-			return cautareBinara(lista, numarCautat, ++leftPos, rightPos);
+			return cautareBinara(lista, numarCautat, mij, rightPos);
 
 		} else if (lista[mij] > numarCautat) {
 
-			return cautareBinara(lista, numarCautat, leftPos, --rightPos);
+			return cautareBinara(lista, numarCautat, leftPos, mij);
 
 		} else {
-			throw new Exception("Error no location find for number " + numarCautat);
+			return lista[mij];
 		}
 
 	}
