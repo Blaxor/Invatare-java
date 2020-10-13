@@ -12,12 +12,6 @@ public class Node<T> {
 		this.next = next;
 	}
 
-	public Node(T value, Node<T> prev) {
-		this.value = value;
-		this.prev = prev;
-		this.next = null;
-	}
-
 	public T getValue() {
 		return value;
 	}
