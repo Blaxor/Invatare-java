@@ -5,7 +5,7 @@ package ro.andrei.ListeDubluInlantuite;
 public class ListaDubluInlantuita<T> {
 	Node<T> primul;
 	Node<T> ultimul;
-	int size;
+	int size = 0;
 
 	public ListaDubluInlantuita(T primul, T ultimul) {
 		this.primul = new Node<T>(primul, null, null);
@@ -27,7 +27,15 @@ public class ListaDubluInlantuita<T> {
 			primul.setPrev(n);
 			primul = n;
 			size++;
+			return;
 		}
+
+		Node<T> prev = getNode(index - 1);
+		Node<T> next = getNode(index + 1);
+		Node<T> n = new Node<T>(value, prev, next);
+		next.setPrev(n);
+		prev.setNext(n);
+		size++;
 
 	}
 

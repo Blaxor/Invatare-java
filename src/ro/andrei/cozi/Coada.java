@@ -1,12 +1,12 @@
 package ro.andrei.cozi;
 
-import ro.andrei.Stive.Node;
+
 
 public class Coada<T> {
 
-	private int maxAmount;
-	private int size;
-	private Node<T> head = null;
+	private int maxAmount;// Numarul maxim de elemente din lista
+	private int size;// Numarul de elemente din lista
+	private Node<T> head = null;// primul element din lista
 
 	/**
 	 * Constructor pentru lista de tip Coada
@@ -32,19 +32,19 @@ public class Coada<T> {
 	 * 
 	 */
 	public void queue(T t) {
-		if (isFull())
+		if (isFull())// daca lista este plina
 			throw new RuntimeException("OverFlow");
-		if (head == null) {
-			head = new Node<T>(t);
-			size++;
+		if (head == null) {// daca elementul este vid
+			head = new Node<T>(t);// creeam un nou element cu valoarea t
+			size++;// incrementam lista odata
 			return;
 		}
-		Node<T> now = head;
-		while(now.getNext() != null) {
-			now = now.getNext();
+		Node<T> now = head;// variabila temporara
+		while (now.getNext() != null) {// cat timp umraturl lui now nu este null
+			now = now.getNext();// now este urmatorul
 		}
-		now.setNext(new Node<T>(t));
-		size++;
+		now.setNext(new Node<T>(t));// urmatorul la ultimul nod o sa fie un nou nod de valoarea t
+		size++;// incrementam lista
 	}
 
 	/**
@@ -54,13 +54,13 @@ public class Coada<T> {
 	 * 
 	 */
 	public T dequeue() {
-		if (isEmpty())
+		if (isEmpty())// daca lista este goala
 			throw new RuntimeException("Stergere nereusita: UNDERFLOW");
 
-		T ceva = head.getValue();
-		head = head.getNext();
-		size--;
-		return ceva;
+		T ceva = head.getValue();// variabila temporara cu valoarea primului element
+		head = head.getNext();// primul element o sa fie urmatorul dupa acesta
+		size--;// reducem cu 1 dimensiunea
+		return ceva;// scoate valoarea din primul element
 	}
 
 	/**
