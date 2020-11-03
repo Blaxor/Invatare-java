@@ -7,8 +7,5 @@ public class app {
 	}
 
 
-	private static void testeazaCozie() {
 
-
-	}
 }

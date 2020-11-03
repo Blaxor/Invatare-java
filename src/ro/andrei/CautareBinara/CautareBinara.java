@@ -1,73 +1,57 @@
 package ro.andrei.CautareBinara;
 
+import java.util.ArrayList;
+
 public class CautareBinara {
 
 	public static void main(String[] args) {
-		int[] a = { 1, 3, 4, 4, 5, 10, 15, 20, 100, 250, 300, 599, 2000 };
-		System.out.println(cautareBinara(a, 100, 0, a.length));
+		int[] a = { 5, 10, 25, 30, 55, 100, 150, 259, 269, 300 };
+		ArrayList<Integer> lita = new ArrayList<Integer>();
+		for (int i = 0; i < a.length; i++) {
+			lita.add(a[i]);
+		}
+		int pos = cautareBinara(lita, 30, 0, a.length - 1);
+		System.out.println(pos);
 
 	}
 
 
 
-	public static int[] insertieBinara(int[] lista, int numar) {
 
-		int pos = 0;
-		try {
-			pos = cautareBinara(lista, numar, 0, lista.length);
-		} catch (ArrayIndexOutOfBoundsException e) {
+	public static void inserareBinara(ArrayList<Integer> lista, int numar) {
 
-			e.printStackTrace();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (numar > lista.get(lista.size())) {
+			lista.add(numar);
+			return;
+		} else if (numar < lista.get(0)) {
+			lista.add(0, numar);
 		}
-		int[] listaNoua = new int[lista.length + 1];
-		int i = 0;
-		while (i < lista.length) {
-
-			if (i == pos) {
-
-				listaNoua[i + 1] = numar;
-				listaNoua[i] = lista[i];
-				i++;
-
-			} else if (i < pos) {
-
-				listaNoua[i] = lista[i];
-				i++;
-
-			} else if (i > pos) {
-
-				listaNoua[i + 1] = lista[i];
-				i++;
-
-			}
-
-		}
-
-
-		return listaNoua;
 
 	}
-
+	
 	/*
-	 * 4 [1,2,3,4,5,6,7,8,9] Return pozitia numarului cautat in lista;
+	 * 4 [1,2,3,5,6,7,8,9] Return pozitia numarului cautat in lista;
 	 */
-	public static int cautareBinara(int[] lista, int numarCautat, int leftPos, int rightPos) {
+	public static int cautareBinara(ArrayList<Integer> lista, int numarCautat, int leftPos, int rightPos) {
+
 		int mij = (rightPos - leftPos) / 2;
 
+		if (lista.get(mij) > numarCautat) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			for(int i = leftPos ; i < mij ; i++) {
+				list.add(i);
+			}
+			return mij + cautareBinara(list, numarCautat, leftPos, mij);
 
-		if (lista[mij] < numarCautat) {
-
-			return cautareBinara(lista, numarCautat, mij, rightPos);
-
-		} else if (lista[mij] > numarCautat) {
-
-			return cautareBinara(lista, numarCautat, leftPos, mij);
+		} else if (lista.get(mij) < numarCautat) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			for (int i = mij; i < rightPos; i++) {
+				list.add(lista.get(i));
+			}
+			return mij + cautareBinara(list, numarCautat, mij, rightPos);
 
 		} else {
-			return lista[mij];
+			return mij;
 		}
 
 	}
