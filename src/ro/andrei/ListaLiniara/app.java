@@ -49,7 +49,6 @@ public class app {
 				
 				lista.addNode(input.next());
 				
-				
 				break;
 			case 2:
 				System.out.println("Al catelea element vrei sa il stergi?");
