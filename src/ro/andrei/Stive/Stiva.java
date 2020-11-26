@@ -6,7 +6,7 @@ public class Stiva<T> {
 	private Node<T> head;
 
 	/**
-	 * Constructor pentru lista de tip Coada
+	 * Constructor pentru lista de tip Stiva
 	 * 
 	 * @param head      - primul element din Stiva
 	 * @param maxAmount - dimensiunea maxima a listei
@@ -57,6 +57,7 @@ public class Stiva<T> {
 		}
 		T value = prevlast.getValue();
 		prevlast.setNext(null);
+		size--;
 		return value;
 	}
 

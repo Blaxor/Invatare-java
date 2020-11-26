@@ -143,11 +143,33 @@ public class ListaLiniara<T> {
 	}
 
 	/**
-	 * Ia elementul de la o anumita pozitie
+	 * Ia elementul de la o anumita valoare
 	 * 
 	 * @param i - pozitia elementului
 	 * @return elementul gasit
+	 * @throws Exception
 	 */
+	public Node<T> getNode(T value) throws Exception {
+
+		if (isEmpty()) {// daca este gol
+			System.out.println("Lista este vida : UNDERFLOW");
+			return null;
+		}
+
+		Node<T> nodeNow = head;
+		while (nodeNow.getNext() != null && nodeNow.getNext().getValue() != value) {
+			nodeNow = nodeNow.getNext();
+
+		}
+		if (nodeNow.getNext() != null) {
+
+			return nodeNow.getNext();
+		} else {
+			throw new Exception("Elementul nu exista in lista");
+		}
+
+
+	}
 	public Node<T> getNode(int i) {
 
 		if (isEmpty()) {// daca este gol
